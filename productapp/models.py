@@ -24,7 +24,7 @@ class Category(models.Model):
     created_by = UserForeignKey(auto_user_add=True, on_delete=models.SET_NULL, related_name="categories_createdid")
     updated_date = models.DateTimeField(auto_now=True)
     updated_by = UserForeignKey(auto_user=True, on_delete=models.SET_NULL, related_name='categories_updatedid')
-    brand_id = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    brand_id = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='categories')
 
     def __str__(self):
         return self.name
