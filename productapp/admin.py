@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import *
-
+from admin_searchable_dropdown.filters import AutocompleteFilter
 
 
 
@@ -34,6 +34,17 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 
+class CarCompanyFilter(AutocompleteFilter):
+    title = 'Company' # display title
+    field_name = 'company' # name of the foreign key field
 
+
+class CarCompanyAdmin(admin.ModelAdmin):
+    search_fields = ['name'] # this is required for django's autocomplete functionality
+    # ...
+
+
+class CarModelAdmin(admin.ModelAdmin):
+    list_filter = [CarCompanyFilter]
 
 

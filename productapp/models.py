@@ -39,7 +39,7 @@ class SubCategory(models.Model):
     created_by = UserForeignKey(auto_user_add=True, on_delete=models.SET_NULL, related_name='subcategories_createdid')
     updated_date = models.DateTimeField(auto_now=True)
     updated_by = UserForeignKey(auto_user=True, on_delete=models.SET_NULL, related_name='subcategories_updatedid')
-    category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category_id = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='subcategories')
 
     def __str__(self):
         return self.name
@@ -50,11 +50,12 @@ class Product(models.Model):
     color = models.CharField(max_length=50)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    suggestions = models.CharField(max_length=255, blank=True, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     created_by = UserForeignKey(auto_user_add=True, on_delete=models.SET_NULL, related_name='products_createdid')
     updated_date = models.DateTimeField(auto_now=True)
     updated_by = UserForeignKey(auto_user=True, on_delete=models.SET_NULL, related_name='products_updatedid')
-    subcategory_id = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
+    subcategory_id = models.ForeignKey(SubCategory, on_delete=models.CASCADE, related_name='products')
 
     def __str__(self):
         return self.name

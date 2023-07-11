@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import rest_framework.pagination
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_userforeignkey',
     'django_filters',
+    'admin_searchable_dropdown',
 ]
 
 MIDDLEWARE = [
@@ -116,6 +119,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+REST_FRAMEWORK = {'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.PageNumberPagination', 'PAGE_SIZE':1}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
